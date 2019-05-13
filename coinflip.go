@@ -1,10 +1,11 @@
 package main
 
 import (
+	"crypto/rand"
 	"flag"
 	"fmt"
 	"github.com/bwmarrin/discordgo"
-	"math/rand"
+	"math/big"
 	"os"
 	"os/signal"
 	"strings"
@@ -12,7 +13,9 @@ import (
 	"time"
 )
 
-var token string
+var (
+	token string
+)
 
 func init() {
 	flag.StringVar(&token, "t", "", "bot token")
@@ -50,6 +53,9 @@ func messageCreate(ds *discordgo.Session, mess *discordgo.MessageCreate) {
 	if mess.Author.Bot {
 		return
 	}
+	for i := 0; i < 100; i++ {
+
+	}
 	if strings.ToLower(mess.Content) == "!!flip" {
 		go func() {
 			ds.ChannelMessageSend(mess.ChannelID, mess.Author.Mention()+
@@ -59,10 +65,13 @@ func messageCreate(ds *discordgo.Session, mess *discordgo.MessageCreate) {
 }
 
 func flip() string {
-
-	r := rand.New(rand.NewSource(time.Now().UnixNano()))
-	i := r.Intn(2)
-	if i == 0 {
+	o := big.NewInt(time.Now().Unix())
+	i, err := rand.Int(rand.Reader, o)
+	if err != nil {
+		return "this cryptographically secure random value is really bad"
+	}
+	println(i.Uint64() % 2)
+	if i.Uint64()%2 == 0 {
 		return "HEADS"
 	}
 	return "TAILS"
