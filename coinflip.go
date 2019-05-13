@@ -72,7 +72,7 @@ func flip() string {
 	}
 	println(i.Uint64() % 2)
 	if i.Uint64()%2 == 0 {
-		return "HEADS"
+		return "HEADS!"
 	}
-	return "TAILS"
+	return "TAILS!"
 }
