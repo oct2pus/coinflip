@@ -58,7 +58,7 @@ func messageCreate(ds *discordgo.Session, mess *discordgo.MessageCreate) {
 }
 
 func flip() string {
-	if time.Now().Unix()%2 == 0 {
+	if time.Now().UnixNano()%2 == 0 {
 		return "HEADS"
 	}
 	return "TAILS"
