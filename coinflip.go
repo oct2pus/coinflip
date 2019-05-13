@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"github.com/bwmarrin/discordgo"
+	"math/rand"
 	"os"
 	"os/signal"
 	"strings"
@@ -58,7 +59,10 @@ func messageCreate(ds *discordgo.Session, mess *discordgo.MessageCreate) {
 }
 
 func flip() string {
-	if time.Now().UnixNano()%2 == 0 {
+
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+	i := r.Intn(2)
+	if i == 0 {
 		return "HEADS"
 	}
 	return "TAILS"
