@@ -1,0 +1,6 @@
+{
+    "go.useLanguageServer": true,
+    "go.alternateTools": {
+        "go-langserver": "go-langserver"
+    },
+}
