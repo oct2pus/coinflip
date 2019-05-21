@@ -72,6 +72,7 @@ func flip() string {
 	if err != nil {
 		return "this cryptographically secure random value is really bad"
 	}
+	println(i.Uint64() % 2)
 	if i.Uint64()%2 == 0 {
 		return "HEADS!"
 	}
