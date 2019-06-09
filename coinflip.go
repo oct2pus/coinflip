@@ -56,9 +56,9 @@ func messageCreate(ds *discordgo.Session, mess *discordgo.MessageCreate) {
 	for i := 0; i < 100; i++ {
 
 	}
-	if strings.ToLower(mess.Content) == "!!flip" ||
-		strings.ToLower(mess.Content) == "🍋flip" ||
-		strings.ToLower(mess.Content) == "<:lemonicdiva:507707374660747275>flip" {
+	if strings.HasPrefix(strings.ToLower(mess.Content), "!!flip") ||
+		strings.HasPrefix(strings.ToLower(mess.Content), "🍋flip") ||
+		strings.HasPrefix(strings.ToLower(mess.Content), "<:lemonicdiva:507707374660747275>flip") {
 		go func() {
 			ds.ChannelMessageSend(mess.ChannelID, mess.Author.Mention()+
 				" "+flip())
